@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的MC小天地 | 个人主页</title>
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/minecraft-regular">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Minecraft", "微软雅黑", sans-serif;
+            background: linear-gradient(135deg, #1e461a 0%, #2d5a27 50%, #1e461a 100%);
+            color: #ffffff;
+            padding: 40px 15px;
+            line-height: 1.8;
+            image-rendering: pixelated;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .tip{
+            text-align:center;
+            color:#ffd700;
+            margin-bottom:20px;
+            font-size:0.9rem;
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #428638, #366d2e);
+            padding: 45px 30px;
+            border: 6px solid #8b7355;
+            border-radius: 4px;
+            box-shadow: 
+                0 0 0 4px #5a4a38,
+                6px 6px 0 #152b12,
+                0 0 20px rgba(255, 215, 0, 0.25);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+        .container:hover {
+            box-shadow: 
+                0 0 0 4px #5a4a38,
+                6px 6px 0 #152b12,
+                0 0 30px rgba(255, 215, 0, 0.4);
+        }
+        h1 {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px #1a3317, 0 0 8px rgba(255,215,0,0.3);
+            letter-spacing: 3px;
+            animation: float 3s ease-in-out infinite, titleBreathe 3s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes titleBreathe {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .intro {
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            color: #e8e8e8;
+            letter-spacing: 1px;
+        }
+        .section {
+            background: linear-gradient(145deg, #529e46, #44883a);
+            padding: 22px;
+            margin: 25px 0;
+            border: 4px solid #ffd700;
+            box-shadow: 3px 3px 0 #1a3317;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .section:hover {
+            transform: translateX(-3px) translateY(-3px);
+        }
+        .section:active {
+            transform: scale(1.03);
+            box-shadow: 5px 5px 0 #1a3317, 0 0 15px rgba(255,215,0,0.5);
+        }
+        .section h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 2px 2px #1a3317;
+        }
+        .content {
+            font-size: 1.05rem;
+            color: #f2f2f2;
+        }
+        .icon {
+            font-size: 1.3em;
+        }
+        .link-btn, .msg-btn, .mc-btn {
+            font-family: "Minecraft", sans-serif;
+            background: #5b8c5a;
+            border: 4px solid #3a5f39;
+            box-shadow: 0 6px 0 #243d23, inset 0 2px 0 #7ab87a;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.1s;
+            text-shadow: 2px 2px #1a3317;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .link-btn:active, .msg-btn:active, .mc-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #243d23, inset 0 2px 0 #7ab87a;
+        }
+        .link-btn:hover, .mc-btn:hover {
+            filter: brightness(1.1);
+        }
+        .img-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 18px;
+            justify-content: center;
+        }
+        .img-item {
+            width: 190px;
+            height: 130px;
+            background: #2d5a27;
+            border: 3px solid #8b7355;
+            box-shadow: 2px 2px 0 #1a3317;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 0.95rem;
+            transition: transform 0.2s;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .img-item:hover {
+            transform: scale(1.05);
+        }
+        .img-item:active {
+            transform: scale(1.1);
+        }
+        .img-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .msg-input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            background: #f8f8f8;
+            border: 3px solid #8b7355;
+            color: #222;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: inset 2px 2px 0 #ccc;
+        }
+        .msg-list {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 2px dashed #8b7355;
+        }
+        .msg-item {
+            padding: 10px 12px;
+            margin: 10px 0;
+            background: rgba(62, 124, 53, 0.7);
+            border-left: 5px solid #ffd700;
+            border-radius: 2px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 1rem;
+            opacity: 0.9;
+            padding-top: 20px;
+            border-top: 2px dashed #8b7355;
+            color: #e8e8e8;
+        }
+        .inventory-bar {
+            display: flex;
+            gap: 4px;
+            background: rgba(0,0,0,0.7);
+            padding: 8px;
+            border: 3px solid #8b7355;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .inventory-slot {
+            width: 50px;
+            height: 50px;
+            background: #555;
+            border: 2px solid #333;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .inventory-slot:hover {
+            transform: scale(1.1);
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+        .card-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card-container {
+            width: 180px;
+            height: 180px;
+            perspective: 1000px;
+        }
+        .mc-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card-container:hover .mc-card {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 4px solid #8b7355;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Minecraft", sans-serif;
+            padding: 10px;
+            text-align: center;
+        }
+        .card-front {
+            background: #529e46;
+            color: white;
+        }
+        .card-back {
+            background: #ffd700;
+            color: #222;
+            transform: rotateY(180deg);
+        }
+        .fire-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(255,50,50,0.15);
+            pointer-events: none;
+            animation: fireFlicker 0.5s infinite alternate;
+            z-index: 1;
+        }
+        @keyframes fireFlicker {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.25; }
+        }
+        .particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="fire-overlay"></div>
+
+    <div class="tip">💡 先点击页面任意位置激活音效</div>
+    <div class="container">
+        <h1>🧱 我的世界 个人分享站 🧱</h1>
+        <div class="intro">
+            欢迎来到方块世界 | 分享建筑、生存与冒险的快乐
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">👤</span> 关于我</h2>
+            <div class="content">
+                一名资深MC爱好者，痴迷方块搭建、荒野探索与趣味生存。
+                在这里记录每一次冒险，分享游戏心得与创意作品。
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎮</span> 我的世界 游戏分享</h2>
+            <div class="content">
+                ✨ 原创建筑作品、趣味生存存档<br>
+                🛠️ 实用玩法技巧、红石小教程<br>
+                💚 一同感受方块世界的无限乐趣
+            </div>
+            <a href="#" class="link-btn">查看更多作品</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🃏</span> 方块翻转卡片</h2>
+            <div class="content">鼠标悬停卡片即可翻转查看详情</div>
+            <div class="card-wrap">
+                <div class="card-container">
+                    <div class="mc-card">
+                        <div class="card-front">城堡建筑</div>
+                        <div class="card-back">耗时3天打造的欧式城堡</div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="mc-card">
+                        <div class="card-front">红石机关</div>
+                        <div class="card-back">全自动收菜农场</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎒</span> MC物品栏</h2>
+            <div class="content">模拟游戏快捷物品栏，悬浮高亮</div>
+            <div class="inventory-bar">
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+                <div class="inventory-slot"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🖼️</span> 建筑&冒险截图</h2>
+            <div class="content">我的创意建筑、冒险瞬间展示</div>
+            <div class="img-box">
+                <div class="img-item">建筑作品 1</div>
+                <div class="img-item">冒险截图 2</div>
+                <div class="img-item">红石机关 3</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">💬</span> 玩家留言区</h2>
+            <div class="content">留下你的游戏想法，和同好一起交流吧！</div>
+            <input type="text" class="msg-input" placeholder="在此输入留言内容...">
+            <button class="msg-btn">提交留言</button>
+
+            <div class="msg-list">
+                <div class="msg-item">方块世界永不停歇，一起愉快游玩！</div>
+                <div class="msg-item">建筑超好看，期待更多作品~</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">💡</span> 精选推荐</h2>
+            <div class="content">
+                趣味生存挑战 | 唯美风景建筑 | 创意红石装置<br>
+                探索MC里不一样的精彩玩法
+            </div>
+            <button class="mc-btn">前往查看</button>
+        </div>
+
+        <div class="footer">
+            🏠 MC专属个人主页 | 热爱方块，热爱冒险
+        </div>
+    </div>
+
+    <audio id="mcSound" preload="auto">
+        <source src="https://freesound-data.s3.amazonaws.com/previews/169025/169025_3148202-lq.mp3" type="audio/mpeg">
+    
+
+    <script>
+        // 强化音频预加载，专门适配Edge浏览器
+        const sound = document.getElementById('mcSound');
+        sound.load();
+        sound.volume = 0.8; // 控制音量，避免爆音
+        const allClickEle = document.querySelectorAll('.section, .img-item, .link-btn, .msg-btn, .inventory-slot, .mc-btn');
+        let audioEnable = false;
+
+        // 页面任意点击解锁音频权限
+        document.body.addEventListener('click', function(){
+            if(!audioEnable){
+                sound.play().catch(e=>{});
+                audioEnable = true;
+            }
+        });
+
+        // 所有可点击元素绑定音效
+        allClickEle.forEach(item => {
+            item.addEventListener('click', () => {
+                if(audioEnable){
+                    sound.currentTime = 0;
+                    sound.play().catch(e=>{});
+                }
+            });
+        });
+
+        // 粒子特效
+        function createParticle() {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.top = "-10px";
+            const colorArr = ["#7ab87a", "#8b7355", "#ffd700"];
+            p.style.background = colorArr[Math.floor(Math.random() * colorArr.length)];
+            document.body.appendChild(p);
+
+            const fall = setInterval(() => {
+                p.style.top = parseFloat(p.style.top) + 0.5 + "px";
+                p.style.left = parseFloat(p.style.left) + (Math.random()-0.5)*0.2 + "px";
+                if (parseFloat(p.style.top) > window.innerHeight) {
+                    p.remove();
+                    clearInterval(fall);
+                }
+            }, 20);
+        }
+        setInterval(createParticle, 200);
+    </script>
+</body>
+</html>
